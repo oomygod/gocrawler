@@ -3,15 +3,22 @@ package scheduler
 import "learn/crawler/engine"
 
 type SimplerScheduler struct {
-	WorkerChan chan engine.Request
+	workerChan chan engine.Request
 }
 
 func (s *SimplerScheduler) Submit(request engine.Request) {
 	go func() {
-		s.WorkerChan <- request
+		s.workerChan <- request
 	}()
 }
 
-func (s *SimplerScheduler) ConfigureWorkerChan(requests chan engine.Request) {
-	s.WorkerChan = requests
+func (s *SimplerScheduler) WorkerChan() chan engine.Request {
+	return s.workerChan
+}
+
+func (s *SimplerScheduler) WorkerReady(requests chan engine.Request) {
+}
+
+func (s *SimplerScheduler) Run() {
+	s.workerChan = make(chan engine.Request)
 }
