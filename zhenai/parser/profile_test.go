@@ -12,15 +12,15 @@ func TestParseProfile(t *testing.T) {
 	//url := "https://album.zhenai.com/u/1700301913"
 	//url := "https://www.zhenai.com/zhenghun/aba"
 	//url := "https://www.zhenai.com/zhenghun"
-	for _,url := range data(){
-		content, err := fetcher.Fetch(url,0)
+	for _, url := range data() {
+		content, err := fetcher.Fetch(url, 0)
 		if err != nil {
-			t.Logf("fetcher: error" + "fetching url %s: %v",url,err)
+			t.Logf("fetcher: error"+"fetching url %s: %v", url, err)
 		}
 		//t.Log(string(content))
-		res := ParseProfile(content,"")
-		fmt.Printf("%+v",res)
-		break
+		res := ParseProfile(content, "")
+		fmt.Printf("%+v \n", res)
+		//break
 	}
 }
 
@@ -51,7 +51,7 @@ https://album.zhenai.com/u/101658152
 https://album.zhenai.com/u/103132583
 https://album.zhenai.com/u/1596207608
 https://album.zhenai.com/u/1544748367`
-	arr := strings.Split(str,"\n")
+	arr := strings.Split(str, "\n")
 	return arr
 }
 

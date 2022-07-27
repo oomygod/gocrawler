@@ -1,11 +1,26 @@
 package fetcher
 
+import (
+	"log"
+	"time"
+)
+
 const dpUrl = "https://album.zhenai.com/u/1596207608"
+
 var cookieStr string
+var rateSetCookie = time.Tick(10 * time.Second)
 
 func init() {
 	//SetCookie("https://album.zhenai.com/u/1677398857")
 	SetCookie(dpUrl)
+	go func() {
+		for {
+			<-rateSetCookie
+			log.Println("SetCookie()...")
+			SetCookie(dpUrl)
+			log.Println(cookieStr)
+		}
+	}()
 }
 
 func SetCookie(url string) {
@@ -13,7 +28,9 @@ func SetCookie(url string) {
 	cookie := ReadCookie()
 	var str string
 	for _, ck := range cookie {
-		str += ck.Name + "=" + ck.Value + ";"
+		if ck.Name == "FSSBBIl1UgzbN7NP" || ck.Name == "FSSBBIl1UgzbN7NO" {
+			str += ck.Name + "=" + ck.Value + ";"
+		}
 	}
 	cookieStr = str
 }

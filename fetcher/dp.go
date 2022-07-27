@@ -12,7 +12,7 @@ import (
 )
 
 //const url = "https://album.zhenai.com/u/1677398857"
-const remoteWs = "ws://127.0.0.1:9222/devtools/browser/28497aaf-f9a5-4bbf-92b0-e88b60ce5500"
+const remoteWs = "ws://127.0.0.1:9222/devtools/browser/465d8592-bd03-4395-9bfa-951a3abc35f0"
 
 func GetAllCookies(url string) string {
 	//本地
